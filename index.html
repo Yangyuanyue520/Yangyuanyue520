@@ -71,6 +71,49 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-data structure 3(tree)" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/04/14/data%20structure%203(tree)/" class="article-date">
+  <time class="dt-published" datetime="2021-04-14T07:25:00.000Z" itemprop="datePublished">2021-04-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/04/14/data%20structure%203(tree)/">data structure 3(tree)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="implementation-of-a-Linked-Tree-in-lib280"><a href="#implementation-of-a-Linked-Tree-in-lib280" class="headerlink" title="implementation of a Linked Tree in lib280"></a>implementation of a Linked Tree in lib280</h2><p><img src="/.com//2021-04-14/4c6932ddfa365bcb937fe0f91f2731fa.jpg"></p>
+<h3 id="lt-gt-Container"><a href="#lt-gt-Container" class="headerlink" title="&lt;&gt; Container"></a>&lt;<interface>&gt; Container</interface></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public interface Container280 extends Cloneable</span><br><span class="line">&#123;</span><br><span class="line">	&#x2F;**	Is the data structure empty?. *&#x2F;</span><br><span class="line">	public boolean isEmpty();</span><br><span class="line"> </span><br><span class="line">	&#x2F;**	Is the data structure full?. *&#x2F;</span><br><span class="line">	public boolean isFull();</span><br><span class="line"> </span><br><span class="line">	&#x2F;**	Remove all items from the data structure. *&#x2F;</span><br><span class="line">	public void clear();</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+<h3 id="lt-gt-SimpleTree"><a href="#lt-gt-SimpleTree" class="headerlink" title="&lt;&gt; SimpleTree"></a>&lt;<interface>&gt; SimpleTree</interface></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">public interface SimpleTree280&lt;I&gt; extends Container280   </span><br><span class="line">&#123;</span><br><span class="line">	&#x2F;** </span><br><span class="line">	 * Contents of the root item. 			</span><br><span class="line">	 * @precond !isEmpty()  </span><br><span class="line">     *&#x2F;</span><br><span class="line">	public I rootItem() throws ContainerEmpty280Exception;</span><br><span class="line">	&#x2F;**</span><br><span class="line">     * Right subtree of the root.</span><br><span class="line">	 * @precond !isEmpty() </span><br><span class="line">	 *&#x2F;</span><br><span class="line">	public SimpleTree280&lt;I&gt; rootRightSubtree() </span><br><span class="line">				throws ContainerEmpty280Exception;</span><br><span class="line">	&#x2F;**</span><br><span class="line">	 * Left subtree of the root. </span><br><span class="line">     * @precond !isEmpty() </span><br><span class="line">	 *&#x2F;</span><br><span class="line">	public SimpleTree280&lt;I&gt; rootLeftSubtree() </span><br><span class="line">				throws ContainerEmpty280Exception;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="LinkedSimpleTree"><a href="#LinkedSimpleTree" class="headerlink" title="LinkedSimpleTree"></a>LinkedSimpleTree</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;**	An implementation of the SimpleTree280 interface with functions to access and </span><br><span class="line">	set the root node and the root subtrees.  It also has functions to </span><br><span class="line">	access the root item, test for empty, and to wipe out all the items. *&#x2F;</span><br><span class="line">public class LinkedSimpleTree280&lt;I extends Comparable&lt;? super I&gt;&gt; implements SimpleTree280&lt;I&gt;</span><br><span class="line">&#123;</span><br><span class="line">    protected BinaryNode280&lt;I&gt; rootNode;</span><br><span class="line">    public LinkedSimpleTree280()&#123;rootNode &#x3D; null;&#125;</span><br><span class="line">    public LinkedSimpleTree280(LinkedSimpleTree280&lt;I&gt; lt, I r, LinkedSimpleTree280&lt;I&gt; rt)&#123;</span><br><span class="line">		rootNode &#x3D; createNewNode(r);</span><br><span class="line">		setRootLeftSubtree(lt);</span><br><span class="line">		setRootRightSubtree(rt);</span><br><span class="line">            ...</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="BinaryNode"><a href="#BinaryNode" class="headerlink" title="BinaryNode"></a>BinaryNode</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public class BinaryNode280&lt;I extends Comparable&lt;? super I&gt;&gt; implements Cloneable, Comparable&lt;BinaryNode280&lt;I&gt;&gt;</span><br><span class="line">&#123;</span><br><span class="line">    &#x2F;** Contents of the node. *&#x2F;</span><br><span class="line">	protected I item;</span><br><span class="line">	&#x2F;** The left node. *&#x2F;</span><br><span class="line">	protected BinaryNode280&lt;I&gt; leftNode;</span><br><span class="line">	&#x2F;** The right node. *&#x2F;</span><br><span class="line">	protected BinaryNode280&lt;I&gt; rightNode;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/04/14/data%20structure%203(tree)/" data-id="cknh6e2th0000grfb164mgwmo" data-title="data structure 3(tree)" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-file-operation" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2021/04/14/file-operation/" class="article-date">
@@ -287,6 +330,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2021/04/14/data%20structure%203(tree)/">data structure 3(tree)</a>
+          </li>
         
           <li>
             <a href="/2021/04/14/file-operation/">File operation</a>
