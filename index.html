@@ -213,6 +213,50 @@
 
 
   
+    <article id="post-Time complexity" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/04/13/Time%20complexity/" class="article-date">
+  <time class="dt-published" datetime="2021-04-13T07:58:40.323Z" itemprop="datePublished">2021-04-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/04/13/Time%20complexity/">Hello World</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="time-analysis"><a href="#time-analysis" class="headerlink" title="time analysis"></a>time analysis</h2><p>•1<br>• logn<br>• √ n = n<sup>1/2<br>• n<br>• nlogn<br>• n<sup>2<br>• n<sup>2 logn<br>• n<sup>3<br>• …<br>• n<sup>k<br>• n<sup>k+1<br>• …<br>• 2<sup>n<br>• 3<sup>n<br>• …<br>• a<sup>n<br>• (a+1)<sup>n<br>• n!</sup></sup></sup></sup></sup></sup></sup></sup></sup></sup></p>
+<h3 id="Combining-Growth-Functions"><a href="#Combining-Growth-Functions" class="headerlink" title="Combining Growth Functions"></a>Combining Growth Functions</h3><p>O(f(n)) + O(g(n))   = O(f(n) + g(n))<br>                            = O(2·max(f(n),g(n)))<br>                            = O(max(f(n), g(n)))<br>O(f(n)) · O(g(n))  = O(f(n) · g(n))<br>kO(f(n)) = O(kf (n)) = O(f(n)) for any constant k.</p>
+<h3 id="example"><a href="#example" class="headerlink" title="example"></a>example</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Algorithm roundRobinTournament(a)</span><br><span class="line">This algorithm generates the list of matches that must be</span><br><span class="line">played in a round -robin pirate -dueling tournament (a tournament where each pirate duels each other pirate exactly once).</span><br><span class="line">a is an array of strings containing names of pirates in the tournament</span><br><span class="line">n &#x3D; a.length</span><br><span class="line">for i &#x3D; 0 to n-1</span><br><span class="line">for j &#x3D; i+1 to n-1</span><br><span class="line">print a[i] + &quot;␣duels␣&quot; + a[j] + &quot;,␣Yarrr!&quot;</span><br></pre></td></tr></table></figure>
+<p>Use the statement counting approach to determine the exact number of statements that are executed by this pseudocode as a function of n. Show all of your calculations..</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">This is a dependent quadratic loop where the number of iterations of the inner loop depends on the value of i in the outer loop.</span><br><span class="line">The inner loop executes two statements per loop iteration (the print statement and the loop condition). The inner loop condition is true n − i − 1 times, depending on the value of i. So the total number of statements executed by the inner loop is 2(n − i − 1) + 1</span><br><span class="line"></span><br><span class="line">The outer loop executes n times, for values of i from 0 to n − 1. Thus the total number of statements executed is the sum of the number of statements executed by the inner loop for each of these values of i:</span><br><span class="line">n−1</span><br><span class="line">∑[2(n−i−1)+1] &#x3D; i&#x3D;0</span><br><span class="line">(b) Θ(n2)</span><br><span class="line">2×((n−1)+(n−2)+(n−3)+···+2+1+0)+n</span><br><span class="line">&#x3D; 2×(0+1+2+···+(n−3)+(n−2)+(n−1))+n</span><br><span class="line">n−1</span><br><span class="line">&#x3D; 2 ∑ i + n (a familiar sum for which we know a closed form!)</span><br><span class="line">i&#x3D;0</span><br><span class="line">&#x3D; 2(n − 1)(n)&#x2F;2 + n</span><br><span class="line">&#x3D; n2</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/04/13/Time%20complexity/" data-id="cknh37log00003ufb1ctgb7el" data-title="Hello World" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
 
 
 </section>
@@ -253,6 +297,10 @@
         
           <li>
             <a href="/2021/04/13/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2021/04/13/Time%20complexity/">Hello World</a>
           </li>
         
       </ul>
